@@ -1,18 +1,13 @@
 package gui;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
-import car.Car;
-import car.Company;
-import car.Customer;
-import car.Reservation;
-import no.hvl.dat102.adt.FilmarkivADT;
 
 public class Tekstgrensesnitt
 {
 
-	Company company;
 	Scanner sc;
 	
 	public Tekstgrensesnitt()
@@ -25,7 +20,7 @@ public class Tekstgrensesnitt
 	{
 		int choice = 0;
 
-		System.out.println("Welcome, to Abu Tallah's Rental Company");
+		System.out.println("Welcome to Abu Tallah's Rental Company");
 		System.out.println("1: Search for available cars");
 		System.out.println("2: Search for reservations.");
 		System.out.println("3: Exit the program.");
@@ -44,14 +39,14 @@ public class Tekstgrensesnitt
 		}
 	}
 	
-	
-	
 	public void searchForAvailableCars() {
 		
-		System.out.println("Please enter the city you want to rent from 'Bergen' or 'Oslo'.");
+		System.out.println("Please enter the city you want to rent from 'Pyongyang' or 'Mogadishu'.");
 		String city = sc.next();
-		
-		Compan
+		System.out.println("Please enter rental date, yyyy-MM-dd");
+		String rentalDate = sc.next();
+		System.out.println("Plase enter return date, yyyy-MM-dd");
+		String returnDate = sc.next();
 		
 		
 	}
