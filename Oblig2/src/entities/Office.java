@@ -2,6 +2,7 @@ package entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import main.Temporary;
@@ -20,15 +21,14 @@ public class Office {
 		this.telephoneNumber = telephoneNumber;
 	}
 
-	public void cityCars(Address a) {
-		if (a.getArea().equals("Mogadishu")) {
+	public List<Car> cityCars(String a) {
+		cars = new ArrayList<>();
+		if (a.equals("Mogadishu")) {
 			cars = temp.mogadishuCars();
 		} else {
 			cars = temp.pyongyangCars();
 		}
-		for (int i = 0; i < cars.size(); i++) {
-			System.out.println(cars.get(i));
-		}
+		return cars;
 
 	}
 

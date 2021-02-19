@@ -1,7 +1,5 @@
 package events;
 
-import java.time.LocalDateTime;
-
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -14,13 +12,13 @@ public class Reservation {
 	private Office office;
 	private String creditCardNumber;
 	private Car car;
-	private LocalDateTime rentalDate;
-	private LocalDateTime timeAtRental;
-	private LocalDateTime returnDate;
+	private Date rentalDate;
+	private Date timeAtRental;
+	private Date returnDate;
 	private int numberOfDays;
 
-	public Reservation(Office office, String creditCardNumber, Car car, LocalDateTime rentalDate, LocalDateTime timeAtRental,
-			LocalDateTime returnDate, int numberOfDays) {
+	public Reservation(Office office, String creditCardNumber, Car car, Date rentalDate, Date timeAtRental,
+			Date returnDate, int numberOfDays) {
 
 		this.office = office;
 		this.creditCardNumber = creditCardNumber;
@@ -76,42 +74,42 @@ public class Reservation {
 	/**
 	 * @return the rentalDate
 	 */
-	public LocalDateTime getRentalDate() {
+	public Date getRentalDate() {
 		return rentalDate;
 	}
 
 	/**
 	 * @param rentalDate the rentalDate to set
 	 */
-	public void setRentalDate(LocalDateTime rentalDate) {
+	public void setRentalDate(Date rentalDate) {
 		this.rentalDate = rentalDate;
 	}
 
 	/**
 	 * @return the timeAtRental
 	 */
-	public LocalDateTime getTimeAtRental() {
+	public Date getTimeAtRental() {
 		return timeAtRental;
 	}
 
 	/**
 	 * @param timeAtRental the timeAtRental to set
 	 */
-	public void setTimeAtRental(LocalDateTime timeAtRental) {
+	public void setTimeAtRental(Date timeAtRental) {
 		this.timeAtRental = timeAtRental;
 	}
 
 	/**
 	 * @return the returnDate
 	 */
-	public LocalDateTime getReturnDate() {
+	public Date getReturnDate() {
 		return returnDate;
 	}
 
 	/**
 	 * @param returnDate the returnDate to set
 	 */
-	public void setReturnDate(LocalDateTime returnDate) {
+	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
 	}
 
