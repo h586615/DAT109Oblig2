@@ -2,8 +2,6 @@ package gui;
 
 import java.util.Scanner;
 
-import no.hvl.dat102.adt.FilmarkivADT;
-
 public class Meny
 {
 	private Tekstgrensesnitt ui;
@@ -13,7 +11,7 @@ public class Meny
 	{
 		ui = new Tekstgrensesnitt();
 	}
-
+	
 	public void start()
 	{
 		while (true)

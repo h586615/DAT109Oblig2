@@ -21,12 +21,13 @@ public class Office {
 		this.telephoneNumber = telephoneNumber;
 	}
 
-	public List<Car> cityCars(String a) {
+	public List<Car> cityCars(int a) {
 		cars = new ArrayList<>();
-		if (a.equals("Mogadishu")) {
-			cars = temp.mogadishuCars();
-		} else {
+		if (a == 1) {
 			cars = temp.pyongyangCars();
+			
+		} else {
+			cars = temp.mogadishuCars();
 		}
 		return cars;
 
