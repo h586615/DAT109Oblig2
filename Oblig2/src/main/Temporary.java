@@ -1,5 +1,8 @@
 package main;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +15,13 @@ import entities.Office;
 
 public class Temporary {
 
-	public List<Car> companyCars() {
-		List<Car> allCars = new ArrayList<>();
+	public List<Car> pyongyangCars() {
+		List<Car> pyongCars = new ArrayList<>();
 
 		Car c1 = new Car("EL47015", Brand.VW, Model.E_UP, "grey", Chassis.A, 80000);
 		Car c2 = new Car("RK98253", Brand.TESLA, Model.S, "black", Chassis.B, 100000);
-		Car c3 = new Car("EL47015", Brand.AUDI, Model.E_UP, "grey", Chassis.A, 80000);
-		Car c4 = new Car("EK68530", Brand.NISSAN, Model.LEAF, "grey", Chassis.A, 80000);
+//		Car c3 = new Car("EL47015", Brand.AUDI, Model.E_UP, "grey", Chassis.A, 80000);
+//		Car c4 = new Car("EK68530", Brand.NISSAN, Model.LEAF, "grey", Chassis.A, 80000);
 //		Car c5 = new Car("EL47015", Brand.BMW, Model.E_UP, "grey", Chassis.A, 80000);
 //		Car c6 = new Car("EL47015", Brand.TESLA, Model.E_UP, "grey", Chassis.A, 80000);
 //		Car c7 = new Car("EL47015", Brand.VW, Model.E_UP, "grey", Chassis.A, 80000);
@@ -26,20 +29,33 @@ public class Temporary {
 //		Car c9 = new Car("EL47015", Brand.BMW, Model.E_UP, "grey", Chassis.A, 80000);
 //		Car c10 = new Car("EL47015", Brand.VW, Model.E_UP, "grey", Chassis.A, 80000);
 
-		allCars.add(c1);
-		allCars.add(c2);
-		allCars.add(c3);
-		allCars.add(c4);
+		pyongCars.add(c1);
+		pyongCars.add(c2);
+//		mogCars.add(c3);
+//		mogCars.add(c4);
 //		cars.add(c5);
 //		cars.add(c6);
 //		cars.add(c7);
 //		cars.add(c8);
 //		cars.add(c9);
 //		cars.add(c10);
-		return allCars;
+		return pyongCars;
 
 	}
-	
+
+	public List<Car> mogadishuCars() {
+		List<Car> mogCars = new ArrayList<>();
+
+		Car c3 = new Car("EL47015", Brand.AUDI, Model.E_UP, "grey", Chassis.A, 80000);
+		Car c4 = new Car("EK68530", Brand.NISSAN, Model.LEAF, "grey", Chassis.A, 80000);
+
+		mogCars.add(c3);
+		mogCars.add(c4);
+
+		return mogCars;
+
+	}
+
 	public List<Office> getAllOffices() {
 		List<Office> offices = new ArrayList<>();
 
@@ -53,6 +69,9 @@ public class Temporary {
 	}
 
 	public static void main(String[] args) {
+
+		LocalDateTime a = new LocalDateTime(03081998);
+		LocalDateTime dateTime = LocalDate.of(2020, Month.JANUARY, 18).atStartOfDay();
 
 	}
 }

@@ -29,13 +29,7 @@ public class Company {
 		}
 	}
 
-	public void allCars() {
-		cars = temp.companyCars();
-		for (int i = 0; i < cars.size(); i++) {
-			System.out.println(cars.get(i));
-		}
 
-	}
 
 //	public void checkAvailable(Address rentalPlace, Date rentalDate, Date returnDate) {
 //

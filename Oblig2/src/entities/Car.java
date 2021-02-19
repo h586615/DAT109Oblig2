@@ -28,15 +28,13 @@ public class Car {
 		reservations = new ArrayList<>();
 	}
 
+
 	@Override
 	public String toString() {
 		return "Car [registrationNumber=" + registrationNumber + ", brand=" + brand + ", model=" + model + ", color="
-				+ color + ", chassis=" + chassis + ", km=" + km + ", available=" + available
-				+ ", getRegistrationNumber()=" + getRegistrationNumber() + ", getBrand()=" + getBrand()
-				+ ", getModel()=" + getModel() + ", getColor()=" + getColor() + ", getChassis()=" + getChassis()
-				+ ", getKm()=" + getKm() + ", getAvailable()=" + getAvailable() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ color + ", chassis=" + chassis + ", km=" + km + ", reservations=" + reservations + "]";
 	}
+
 
 	public String getRegistrationNumber() {
 		return registrationNumber;
@@ -86,27 +84,34 @@ public class Car {
 		this.km = km;
 	}
 
-	public List<Reservation> getAvailable() {
-		return available;
+
+	/**
+	 * @return the reservations
+	 */
+	public List<Reservation> getReservations() {
+		return reservations;
 	}
 
-	public void setAvailable(List<Reservation> available) {
-		this.available = available;
+	/**
+	 * @param reservations the reservations to set
+	 */
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
-	public boolean erLedig(LocalDateTime startDate, LocalDateTime endDate) {
-
-		for (Reservation r : reservations) {
-			if (startDate.isAfter(r.getRentalDate()) && startDate.isBefore(r.getSluttUtleie())) {
-				return false;
-			} else if (endDate.isAfter(r.getRentalDate()) && endDate.isBefore(r.getSluttUtleie())) {
-				return false;
-			} else if (startDate.isBefore(r.getRentalDate()) && endDate.isAfter(r.getSluttUtleie())) {
-				return false;
-			}
-		}
-
-		return true;
-	};
+//	public boolean erLedig(LocalDateTime startDate, LocalDateTime endDate) {
+//
+//		for (Reservation r : reservations) {
+//			if (startDate.isAfter(r.getRentalDate()) && startDate.isBefore(r.getReturnDate())) {
+//				return false;
+//			} else if (endDate.isAfter(r.getRentalDate()) && endDate.isBefore(r.getReturnDate())) {
+//				return false;
+//			} else if (startDate.isBefore(r.getRentalDate()) && endDate.isAfter(r.getReturnDate())) {
+//				return false;
+//			}
+//		}
+//
+//		return true;
+//	};
 
 }
