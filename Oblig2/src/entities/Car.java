@@ -99,9 +99,9 @@ public class Car {
 		for (Reservation r : reservations) {
 			if (startDate.isAfter(r.getRentalDate()) && startDate.isBefore(r.getSluttUtleie())) {
 				return false;
-			} else if (sluttDato.isAfter(r.getStartUtleie()) && sluttDato.isBefore(r.getSluttUtleie())) {
+			} else if (endDate.isAfter(r.getRentalDate()) && endDate.isBefore(r.getSluttUtleie())) {
 				return false;
-			} else if (startDato.isBefore(r.getStartUtleie()) && sluttDato.isAfter(r.getSluttUtleie())) {
+			} else if (startDate.isBefore(r.getRentalDate()) && endDate.isAfter(r.getSluttUtleie())) {
 				return false;
 			}
 		}
