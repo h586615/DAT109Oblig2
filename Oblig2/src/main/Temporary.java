@@ -15,7 +15,7 @@ import entities.Office;
 
 public class Temporary {
 
-	public List<Car> pyongyangCars() {
+	public List<Car> longyearCars() {
 		List<Car> pyongCars = new ArrayList<>();
 
 		Car c1 = new Car("EL47015", Brand.VW, Model.E_UP, "grey", Chassis.A, 80000);
@@ -43,7 +43,7 @@ public class Temporary {
 
 	}
 
-	public List<Car> mogadishuCars() {
+	public List<Car> osloCars() {
 		List<Car> mogCars = new ArrayList<>();
 
 		Car c3 = new Car("EL47015", Brand.AUDI, Model.E_UP, "grey", Chassis.A, 80000);
@@ -59,7 +59,7 @@ public class Temporary {
 	public List<Office> getAllOffices() {
 		List<Office> offices = new ArrayList<>();
 
-		Office c1 = new Office(1, new Address("Haakonsgate 32", 5010, "Bergen"), 51390477);
+		Office c1 = new Office(1, new Address("Kong haraldsgate 12", 9170, "Longyearbyen"), 51390477);
 		Office c2 = new Office(2, new Address("Helmerz Strandgate 50", 1259, "Oslo"), 51490377);
 
 		offices.add(c1);

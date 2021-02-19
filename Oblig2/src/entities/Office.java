@@ -24,10 +24,10 @@ public class Office {
 	public List<Car> cityCars(int a) {
 		cars = new ArrayList<>();
 		if (a == 1) {
-			cars = temp.pyongyangCars();
-			
+			cars = temp.longyearCars();
+
 		} else {
-			cars = temp.mogadishuCars();
+			cars = temp.osloCars();
 		}
 		return cars;
 
