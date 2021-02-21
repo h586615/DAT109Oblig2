@@ -64,28 +64,29 @@ public class Tekstgrensesnitt
 		int city = Integer.parseInt(sc.next());
 		
 		System.out.println("Please enter rental year");
-        String year = sc.next();
+        int year = Integer.parseInt(sc.next());
         
         System.out.println("Please enter rental month");
-        String month = sc.next();
+        int month = Integer.parseInt(sc.next());
         
         System.out.println("Please enter rental day number");
-        String day = sc.next();
+        int day = Integer.parseInt(sc.next());
         
         Date rentalDate = new Date(year, month, day, 07, 00);
         
         System.out.println("Please enter return year");
-        String returnYear = sc.next();
+        int returnYear = Integer.parseInt(sc.next());
         
         System.out.println("Please enter return month");
-        String returnMonth = sc.next();
+        int returnMonth = Integer.parseInt(sc.next());
         
         System.out.println("Please enter return day number");
-        String returnDay = sc.next();
+        int returnDay = Integer.parseInt(sc.next());
         
         Date returnDate = new Date(returnYear, returnMonth, returnDay, 22, 00);
-        
-        int numberOfDays = 0; //need to find number of days 
+		
+        Long daysBetween = (returnDate.getTime() - rentalDate.getTime())/86400000; //86 400 000 milliseconds in a day
+	int numberOfDays = daysBetween.intValue();
         
 		List<Car> cars = office.cityCars(city);
 		
