@@ -43,6 +43,10 @@ package entities;
 		this.zipcode = zipcode; 
 		this.area = area;
 	}
+	@Override
+	public String toString() {
+		return "[" + streetAddress + ", " + zipCode + ", " + city + "]";
+	}
 	
 	
 
