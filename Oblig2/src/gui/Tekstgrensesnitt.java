@@ -89,11 +89,12 @@ public class Tekstgrensesnitt
 	int numberOfDays = daysBetween.intValue();
         
 		List<Car> cars = office.cityCars(city);
+		List<Car> availableCars = car.ledigeBiler(cars, rentalDate, returnDate);
 		
-		int numberOfCars = printAvailableCars(car.ledigeBiler(cars, rentalDate, returnDate));
+		int numberOfCars = printAvailableCars(availableCars);
 	  
 		
-		rentalCar = pickCar(numberOfCars, cars);
+		rentalCar = pickCar(numberOfCars, availableCars);
 		
 		Customer newCustomer = registerCustomer();
 		
