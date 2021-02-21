@@ -35,8 +35,7 @@ public class Tekstgrensesnitt
 		System.out.println("Welcome to Abu Tallah's Rental Company");
 		System.out.println("1: Search for available cars");
 		System.out.println("2: Search for reservation");
-		System.out.println("3: Return car");
-		System.out.println("4: Exit the program.");
+		System.out.println("3: Exit the program.");
 
 		String input = sc.next();
 
@@ -100,7 +99,7 @@ public class Tekstgrensesnitt
 		
 		reservation = makeReservation(rentalCar,rentalDate, returnDate, numberOfDays);
 		
-		updateReservationToCostumer(newCustomer, reservation);
+		updateReservationToCustomer(newCustomer, reservation);
 		
 	}
 	
@@ -135,17 +134,20 @@ public class Tekstgrensesnitt
 	 * @param customer to be updated
 	 * @param reservation to be added
 	 */
-	public void updateReservationToCostumer(Customer customer, Reservation reservation) {
+	public void updateReservationToCustomer(Customer customer, Reservation reservation) {
 		
 		Customer updatedCustomer = customer;
 		
 		updatedCustomer.setReservation(reservation);
 		
 		company.addCustomer(updatedCustomer);
+		
+		System.out.println("Reservation was successful");
 	}
 	
 	/**
 	 * ask customer to type in credit card number, and if the customer wants to pay the given 'sum'
+	 * makes a reservation, and add reservation to the Car
 	 * @return the reservation that was made 
 	 */
 	public Reservation makeReservation(Car car, Date rentalDate, Date returnDate, int numberOfDays) {
@@ -167,6 +169,8 @@ public class Tekstgrensesnitt
 		if(number == 1) {
 			System.out.println("Your payment was successful");
 			reservation = customer.makeReservation(creditcardNumber, car, rentalDate, returnDate, numberOfDays, price);
+			
+			car.addReservation(reservation);
 		}
 		
 		return reservation;

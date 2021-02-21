@@ -14,7 +14,7 @@ public class Company {
 
 	private List<Office> allOffices;
 	private Temporary temp;
-	//private List<Car> cars;
+	private List<Car> cars;
 	private List<Customer> customers;
 
 	public Company(String name, int telephoneNumber, String addresse) {
@@ -30,6 +30,10 @@ public class Company {
 		for (int i = 0; i < allOffices.size(); i++) {
 			System.out.println(allOffices.get(i));
 		}
+	}
+	
+	public void allCars() {
+		cars = temp.
 	}
 	
 	public void addCustomer(Customer customer) {

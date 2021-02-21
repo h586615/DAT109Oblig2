@@ -25,10 +25,8 @@ public class Meny
 
 			case 2: ui.searchForReservation();
 					break;
-					
-			case 3: ui.returnCar();
 
-			case 4: ui.exit();
+			case 3: ui.exit();
 					break;
 
 			default:

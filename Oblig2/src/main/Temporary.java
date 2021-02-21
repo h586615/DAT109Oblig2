@@ -14,6 +14,10 @@ import entities.Model;
 import entities.Office;
 
 public class Temporary {
+	
+	public List<Car> allCars(){
+		
+	}
 
 	public List<Car> longyearCars() {
 		List<Car> longyearCars = new ArrayList<>();
