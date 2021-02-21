@@ -99,7 +99,7 @@ public class Tekstgrensesnitt
 		
 		reservation = completeReservation(rentalCar,rentalDate, returnDate, numberOfDays);
 		
-		updateReservationToCustomer(newCustomer, reservation);
+		addReservationToCustomer(newCustomer, reservation);
 		
 	}
 	
