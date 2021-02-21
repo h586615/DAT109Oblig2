@@ -21,6 +21,12 @@ public class Customer {
 		this.telephoneNumber = phone;
 		this.reservation = reservation;
 	}
+	
+	@Override
+	public String toString() {
+		return "[" + firstName + ", " + lastName + ", address=" + address + ", phone="
+		+ phoneNumber + "]";
+	
 
 	public Reservation makeReservation(Office office, String creditCard, Car car, Date rentalDate, Date timeRental, 
 			Date returnDate, Date timeReturn, int numberOfDays) {
