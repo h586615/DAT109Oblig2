@@ -15,10 +15,11 @@ public class Car {
 	private String color;
 	private Chassis chassis;
 	private int km;
+	private int price;
 
 	private List<Reservation> reservations;
 
-	public Car(String registrationNumber, Brand brand, Model model, String color, Chassis chassis, int km) {
+	public Car(String registrationNumber, Brand brand, Model model, String color, Chassis chassis, int km, int price) {
 
 		this.registrationNumber = registrationNumber;
 		this.brand = brand;
@@ -26,6 +27,7 @@ public class Car {
 		this.color = color;
 		this.chassis = chassis;
 		this.km = km;
+		this.price = price;
 		reservations = new ArrayList<>();
 	}
 
@@ -82,7 +84,14 @@ public class Car {
 	public void setKm(int km) {
 		this.km = km;
 	}
-
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	/**
 	 * @return the reservations
 	 */

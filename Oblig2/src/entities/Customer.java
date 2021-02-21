@@ -10,7 +10,7 @@ public class Customer {
 	private String lastname;
 	private String surname;
 	private Address address;
-	private int telephoneNumber;
+	private int phoneNumber;
 	private Reservation reservation;
 	
 
@@ -18,16 +18,21 @@ public class Customer {
 		this.surname = surname;
 		this.lastname = lastname;
 		this.address = address;
-		this.telephoneNumber = phone;
+		this.phoneNumber = phone;
 		this.reservation = reservation;
 	}
 	
 	@Override
 	public String toString() {
-		return "[" + firstName + ", " + lastName + ", address=" + address + ", phone="
+		return "[" + surname + ", " + lastname + ", address=" + address + ", phone="
 		+ phoneNumber + "]";
+	}
 	
 
+	/**
+	 * customer make reservation
+	 * @return the reservation
+	 */
 	public Reservation makeReservation(Office office, String creditCard, Car car, Date rentalDate, Date timeRental, 
 			Date returnDate, Date timeReturn, int numberOfDays) {
 		
@@ -38,8 +43,16 @@ public class Customer {
 		Reservation newReservation = new Reservation(office, creditCard, car, rentalDate, timeRental, 
 				returnDate, timeReturn, numberOfDays, paymentSum, payment);
 		
+		return newReservation;
+		
 	}
 	
+	/**
+	 * calculate the price to rent a car
+	 * @param days, number of rental days
+	 * @param carPrice
+	 * @return sum
+	 */
 	public int price(int days, int carPrice) {
 		int sum = days * carPrice; 
 		return sum;
