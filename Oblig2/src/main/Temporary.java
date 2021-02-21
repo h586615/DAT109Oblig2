@@ -12,6 +12,7 @@ import entities.Car;
 import entities.Chassis;
 import entities.Model;
 import entities.Office;
+import entities.Company;
 
 public class Temporary {
 	
@@ -24,7 +25,8 @@ public class Temporary {
 //		public Car(String registrationNumber, Brand brand, Model model, String color, Chassis chassis, int km, int price) {
 
 		Car c1 = new Car("EL47015", Brand.VW, Model.E_UP, "grey", Chassis.A, 80000, 1000);
-		Car c2 = new Car("RK98253", Brand.TESLA, Model.S, "black", Chassis.B, 100000, 2500);
+		Car c2 = new Car("EK98253", Brand.TESLA, Model.S, "black", Chassis.B, 100000, 2500);
+		
 //		Car c3 = new Car("EL47015", Brand.AUDI, Model.E_UP, "grey", Chassis.A, 80000);
 //		Car c4 = new Car("EK68530", Brand.NISSAN, Model.LEAF, "grey", Chassis.A, 80000);
 //		Car c5 = new Car("EL47015", Brand.BMW, Model.E_UP, "grey", Chassis.A, 80000);
@@ -36,6 +38,8 @@ public class Temporary {
 
 		longyearCars.add(c1);
 		longyearCars.add(c2);
+		
+		
 //		mogCars.add(c3);
 //		mogCars.add(c4);
 //		cars.add(c5);
@@ -49,15 +53,16 @@ public class Temporary {
 	}
 
 	public List<Car> osloCars() {
-		List<Car> mogCars = new ArrayList<>();
+		List<Car> osloCars = new ArrayList<>();
 
-		Car c3 = new Car("EL47015", Brand.AUDI, Model.E_UP, "grey", Chassis.A, 80000, 1500);
+		Car c3 = new Car("EL47016", Brand.VW, Model.E_UP, "grey", Chassis.A, 80000, 1500);
 		Car c4 = new Car("EK68530", Brand.NISSAN, Model.LEAF, "grey", Chassis.A, 80000, 800);
+		
+		
+		osloCars.add(c3);
+		osloCars.add(c4);
 
-		mogCars.add(c3);
-		mogCars.add(c4);
-
-		return mogCars;
+		return osloCars;
 
 	}
 
