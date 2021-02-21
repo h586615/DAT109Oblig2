@@ -7,13 +7,13 @@ import events.Reservation;
 public class Customer {
 
 	private String lastname;
-	private String surname;
+	private String firstname;
 	private Address address;
 	private int phoneNumber;
 	private Reservation reservation;
 
-	public Customer(String surname, String lastname, Address address, int phone, Reservation reservation) {
-		this.surname = surname;
+	public Customer(String firstname, String lastname, Address address, int phone, Reservation reservation) {
+		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address = address;
 		this.phoneNumber = phone;
@@ -45,12 +45,12 @@ public class Customer {
 		this.lastname = lastname;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public Address getAddress() {
@@ -79,7 +79,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "[" + surname + ", " + lastname + ", address=" + address + ", phone=" + phoneNumber + "]";
+		return "[" + firstname + ", " + lastname + ", address=" + address + ", phone=" + phoneNumber + "]";
 	}
 
 }
