@@ -14,7 +14,7 @@ public class Company {
 
 	private List<Office> allOffices;
 	private Temporary temp;
-	private List<Car> cars;
+	private List<Car> allCars;
 	private List<Customer> customers;
 
 	public Company(String name, int telephoneNumber, String addresse) {
@@ -31,9 +31,11 @@ public class Company {
 			System.out.println(allOffices.get(i));
 		}
 	}
-	
-	public void allCars() {
-		cars = temp.
+	public List<Car> getAllCars() {
+		return allCars;	
+	}
+	public void addToAllCars(Car car){
+		allCars.add(car);
 	}
 	
 	public void addCustomer(Customer customer) {
