@@ -20,6 +20,12 @@ public class Customer {
 		this.telephoneNumber = phone;
 		this.reservation = reservation;
 	}
+	
+	@Override
+	public String toString() {
+		return "[" + firstName + ", " + lastName + ", address=" + address + ", phone="
+		+ phoneNumber + "]";
+	
 
 	public void pay() {
 
