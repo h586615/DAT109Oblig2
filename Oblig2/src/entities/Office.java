@@ -54,5 +54,10 @@ public class Office {
 	public void setTelephoneNumber(int telephoneNumber) {
 		this.telephoneNumber = telephoneNumber;
 	}
+	@Override
+	public String toString() {
+		return "[Number=" + officeNumber + ", Address=" + officeAddress + ", Phone="
+				+ telephoneNumber + "]";
+	}
 
 }
