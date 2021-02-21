@@ -13,26 +13,23 @@ public class Reservation {
 	private String creditCardNumber;
 	private Car car;
 	private Date rentalDate;
-	private Date timeRental;
 	private Date returnDate;
-	private Date timeReturn;
 	private int numberOfDays;
-	private int sum; 
+	private int sum;
 	private boolean payment;
 
 	public Reservation() {
-		
+
 	}
-	public Reservation(Office office, String creditCardNumber, Car car, Date rentalDate, Date timeRental,
-			Date returnDate, Date timeReturn, int numberOfDays, int sum, boolean payment) {
+
+	public Reservation(Office office, String creditCardNumber, Car car, Date rentalDate, Date returnDate,
+			int numberOfDays, int sum, boolean payment) {
 
 		this.office = office;
 		this.creditCardNumber = creditCardNumber;
 		this.car = car;
 		this.rentalDate = rentalDate;
-		this.timeRental = timeRental;
 		this.returnDate = returnDate;
-		this.timeReturn = timeReturn;
 		this.numberOfDays = numberOfDays;
 		this.sum = sum;
 		this.payment = payment;
@@ -92,20 +89,6 @@ public class Reservation {
 	 */
 	public void setRentalDate(Date rentalDate) {
 		this.rentalDate = rentalDate;
-	}
-
-	/**
-	 * @return the timeAtRental
-	 */
-	public Date getTimeAtRental() {
-		return timeAtRental;
-	}
-
-	/**
-	 * @param timeAtRental the timeAtRental to set
-	 */
-	public void setTimeAtRental(Date timeAtRental) {
-		this.timeAtRental = timeAtRental;
 	}
 
 	/**

@@ -56,7 +56,7 @@ public class Office {
 	}
 	@Override
 	public String toString() {
-		return "[Number=" + officeNumber + ", Address=" + officeAddress + ", Phone="
+		return "[Number=" + officeNumber + ", Address=" + address + ", Phone="
 				+ telephoneNumber + "]";
 	}
 

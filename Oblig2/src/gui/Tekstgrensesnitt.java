@@ -57,7 +57,7 @@ public class Tekstgrensesnitt
 		Date returnDate = null;
 		Car rentalCar = null;
 		
-		System.out.println("Please enter the city you want to rent from '1: Pyongyang' or '2: Mogadishu'.");
+		System.out.println("Please enter the city you want to rent from '1: Longyearbyen' or '2: Oslo'.");
 		int city = Integer.parseInt(sc.next());
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm");
