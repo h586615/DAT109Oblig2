@@ -67,7 +67,11 @@ public class Tekstgrensesnitt {
 
 		int numberOfCars = printAvailableCars(cars);
 
-		rentalCar = pickCar(numberOfCars, cars);
+		System.out.println("Chose the car you want to rent, type '0' to exit the service");
+
+		int choice = Integer.parseInt(sc.next());
+		
+		rentalCar = pickCar(choice, numberOfCars, cars);
 
 		Customer newCustomer = registerCustomer();
 
@@ -79,7 +83,10 @@ public class Tekstgrensesnitt {
 	
 	public void searchAndReturnCar() {
 		
-		Reservation reservation = searchForReservation();
+		System.out.println("Please enter your credit card number");
+		String creditCardNumber = sc.next();
+		
+		Reservation reservation = searchForReservation(creditCardNumber);
 		
 		if(reservation == null) {
 			System.out.println("The reservation does not exist");
@@ -103,13 +110,9 @@ public class Tekstgrensesnitt {
 	 * @param cars,  list of cars
 	 * @return the chosen car
 	 */
-	public Car pickCar(int number, List<Car> cars) {
+	public Car pickCar(int choice, int number, List<Car> cars) {
 
 		Car car = null;
-
-		System.out.println("Chose the car you want to rent, type '0' to exit the service");
-
-		int choice = Integer.parseInt(sc.next());
 
 		if (choice == 0) {
 			exit();
@@ -262,10 +265,7 @@ public class Tekstgrensesnitt {
 	 * search after a reservation with the help of credit card number
 	 * @return the reservation
 	 */
-	public Reservation searchForReservation() {
-
-		System.out.println("Please enter your credit card number");
-		String creditCardNumber = sc.next();
+	public Reservation searchForReservation(String creditCardNumber) {
 
 		Reservation reservation = company.findReservation(creditCardNumber);
 		
