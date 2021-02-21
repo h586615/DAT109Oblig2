@@ -63,15 +63,15 @@ public class Tekstgrensesnitt {
 
 		List<Car> cars = company.cityCars(city);
 		
-		//List<Car> availableCars = car.ledigeBiler(cars, rentalDate, returnDate);
+		List<Car> availableCars = Car.ledigeBiler(cars, rentalDate, returnDate);
 
-		int numberOfCars = printAvailableCars(cars);
+		int numberOfCars = printAvailableCars(availableCars);
 
 		System.out.println("Chose the car you want to rent, type '0' to exit the service");
 
 		int choice = Integer.parseInt(sc.next());
 		
-		rentalCar = pickCar(choice, numberOfCars, cars);
+		rentalCar = pickCar(choice, numberOfCars, availableCars);
 
 		Customer newCustomer = registerCustomer();
 
