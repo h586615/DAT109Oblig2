@@ -36,6 +36,14 @@ public class Company {
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}
+	
+	public Customer addCustomer(String surname, String lastname, String address, int zipCode, 
+			String area, int phoneNumber) {
+		Customer customer = new Customer(surname, lastname, new Address(address, zipCode, area), phoneNumber,
+				new Reservation());
+		
+		return customer;
+	}
 
 	public Reservation findReservation(String creditCardNumber) {
 		
@@ -48,6 +56,15 @@ public class Company {
 			}
 		}
 		return reservation;
+	}
+	
+	public void returnCar(Customer customer) {
+		for(Customer c : customers) {
+			if(c.equals(customer)) {
+				c.setReservation(null);
+				System.out.println("The rental car was successfully delivered");
+			}
+		}
 	}
 
 	public List<Car> cityCars(int a) {

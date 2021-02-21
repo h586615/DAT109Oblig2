@@ -3,13 +3,14 @@ package events;
 import java.util.Date;
 
 import entities.Car;
-
+import entities.Customer;
 import entities.Office;
 
 public class Reservation {
 
 	private String creditCardNumber;
 	private Car car;
+	private Customer customer;
 	private Date rentalDate;
 	private Date returnDate;
 	private int numberOfDays;
@@ -20,16 +21,25 @@ public class Reservation {
 
 	}
 
-	public Reservation(String creditCardNumber, Car car, Date rentalDate, Date returnDate, int numberOfDays, int sum,
+	public Reservation(String creditCardNumber, Customer customer, Car car, Date rentalDate, Date returnDate, int numberOfDays, int sum,
 			boolean payment) {
 
 		this.creditCardNumber = creditCardNumber;
 		this.car = car;
+		this.customer = customer;
 		this.rentalDate = rentalDate;
 		this.returnDate = returnDate;
 		this.numberOfDays = numberOfDays;
 		this.sum = sum;
 		this.payment = payment;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	/**

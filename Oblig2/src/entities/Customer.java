@@ -25,12 +25,12 @@ public class Customer {
 	 * 
 	 * @return the reservation
 	 */
-	public Reservation makeReservation(String creditCard, Car car, Date rentalDate, Date returnDate, int numberOfDays,
+	public Reservation makeReservation(String creditCard, Customer customer, Car car, Date rentalDate, Date returnDate, int numberOfDays,
 			int sum) {
 
 		boolean payment = true;
 
-		Reservation newReservation = new Reservation(creditCard, car, rentalDate, returnDate, numberOfDays, sum,
+		Reservation newReservation = new Reservation(creditCard, customer, car, rentalDate, returnDate, numberOfDays, sum,
 				payment);
 
 		return newReservation;

@@ -55,30 +55,11 @@ public class Tekstgrensesnitt {
 		System.out.println("Please enter the city you want to rent from '1: Longyearbyen' or '2: Oslo'.");
 		int city = Integer.parseInt(sc.next());
 
-		System.out.println("Please enter rental year");
-		int year = Integer.parseInt(sc.next());
+		Date rentalDate = rentalDate();
 
-		System.out.println("Please enter rental month");
-		int month = Integer.parseInt(sc.next());
+		Date returnDate = returnDate();
 
-		System.out.println("Please enter rental day number");
-		int day = Integer.parseInt(sc.next());
-
-		Date rentalDate = new Date(year, month, day, 07, 00);
-
-		System.out.println("Please enter return year");
-		int returnYear = Integer.parseInt(sc.next());
-
-		System.out.println("Please enter return month");
-		int returnMonth = Integer.parseInt(sc.next());
-
-		System.out.println("Please enter return day number");
-		int returnDay = Integer.parseInt(sc.next());
-
-		Date returnDate = new Date(returnYear, returnMonth, returnDay, 22, 00);
-
-		Long daysBetween = (returnDate.getTime() - rentalDate.getTime()) / 86400000; // 86 400 000 milliseconds in a day
-		int numberOfDays = daysBetween.intValue();
+		int numberOfDays = calculateDays(returnDate, rentalDate);
 
 		List<Car> cars = company.cityCars(city);
 		
@@ -113,7 +94,6 @@ public class Tekstgrensesnitt {
 			} else {
 				exit();
 			}
-			
 		}
 
 	}
@@ -184,7 +164,7 @@ public class Tekstgrensesnitt {
 		}
 		if (number == 1) {
 			System.out.println("Your payment was successful");
-			reservation = customer.makeReservation(creditcardNumber, car, rentalDate, returnDate, numberOfDays, price);
+			reservation = customer.makeReservation(creditcardNumber, customer, car, rentalDate, returnDate, numberOfDays, price);
 
 			car.addReservation(reservation);
 		}
@@ -221,8 +201,7 @@ public class Tekstgrensesnitt {
 
 		int phoneNumber = Integer.parseInt(phone);
 
-		Customer customer = new Customer(surname, lastname, new Address(address, zipCode, area), phoneNumber,
-				new Reservation());
+		Customer customer = company.addCustomer(surname, lastname, address, zipCode, area, phoneNumber);
 
 		return customer;
 	}
@@ -242,7 +221,41 @@ public class Tekstgrensesnitt {
 
 	public void returnCar(Reservation reservation) {
 
+		boolean yes = true;
+		
 		Car car = reservation.getCar();
+		
+		System.out.println("Type in new km stand");
+		int km = Integer.parseInt(sc.next());
+
+		Date newReturnDate = returnDate();
+		
+		Date returnDate = reservation.getReturnDate();
+		
+		int days = calculateDays(newReturnDate, returnDate);
+		
+		if(days > 0) {
+			
+			int newPrice = price(days, car.getPrice()*2);
+			System.out.println("You went " + days + " over your rental time" + "\n" + "Your fee is on " + newPrice);
+			
+			while(yes) {
+				System.out.println("Type '1' to confirm your payment");
+				int number = Integer.parseInt(sc.next());
+				
+				if(number == 1) {
+					System.out.println("Your payment was successful");
+					yes = false;
+				}
+			}
+		}
+		
+		car.setKm(car.getKm() + km);
+		
+		car.deleteReservation(reservation);
+		
+		company.returnCar(reservation.getCustomer());
+		
 	}
 
 	/**
@@ -280,6 +293,47 @@ public class Tekstgrensesnitt {
 	public int price(int days, int carPrice) {
 		int sum = days * carPrice;
 		return sum;
+	}
+	
+	public Date rentalDate() {
+
+		System.out.println("Please enter rental year");
+		int year = Integer.parseInt(sc.next());
+
+		System.out.println("Please enter rental month");
+		int month = Integer.parseInt(sc.next());
+
+		System.out.println("Please enter rental day number");
+		int day = Integer.parseInt(sc.next());
+
+		Date rentalDate = new Date(year, month, day, 07, 00);
+		
+		return rentalDate;
+	}
+	
+	public Date returnDate() {
+		
+		System.out.println("Please enter return year");
+		int returnYear = Integer.parseInt(sc.next());
+
+		System.out.println("Please enter return month");
+		int returnMonth = Integer.parseInt(sc.next());
+
+		System.out.println("Please enter return day number");
+		int returnDay = Integer.parseInt(sc.next());
+		
+		Date returnDate = new Date(returnYear, returnMonth, returnDay, 22, 00);
+		
+		return returnDate;
+
+	}
+	
+	public int calculateDays(Date returnDate, Date rentalDate) {
+		
+		Long daysBetween = (returnDate.getTime() - rentalDate.getTime()) / 86400000; // 86 400 000 milliseconds in a day
+		int numberOfDays = daysBetween.intValue();
+		
+		return numberOfDays;
 	}
 
 	public void exit() {
