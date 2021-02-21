@@ -35,8 +35,15 @@ public class Company {
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}
-
-
+	
+	public void findReservation(String creditCardNumber) {
+		
+		for(Customer c : customers) {
+			if(c.getReservation().getCreditCardNumber().equals(creditCardNumber)) {
+				System.out.println(c.getReservation());
+			}
+		}	
+	}
 
 //	public void checkAvailable(Address rentalPlace, Date rentalDate, Date returnDate) {
 //

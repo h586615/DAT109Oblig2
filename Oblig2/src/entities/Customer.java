@@ -12,6 +12,7 @@ public class Customer {
 	private Address address;
 	private int phoneNumber;
 	private Reservation reservation;
+	
 
 	public Customer(String surname, String lastname, Address address, int phone, Reservation reservation) {
 		this.surname = surname;
@@ -31,15 +32,13 @@ public class Customer {
 	 * 
 	 * @return the reservation
 	 */
-	public Reservation makeReservation(Office office, String creditCard, Car car, Date rentalDate, Date returnDate,
-			int numberOfDays) {
+	public Reservation makeReservation(String creditCard, Car car, Date rentalDate, Date returnDate, int numberOfDays,
+			int sum) {
 
-		int carPrice = car.getPrice();
-		int paymentSum = price(numberOfDays, carPrice);
 		boolean payment = true;
 
-		Reservation newReservation = new Reservation(office, creditCard, car, rentalDate, returnDate, numberOfDays,
-				paymentSum, payment);
+		Reservation newReservation = new Reservation(creditCard, car, rentalDate, returnDate, numberOfDays,
+				sum, payment);
 
 		return newReservation;
 
@@ -56,5 +55,47 @@ public class Customer {
 		int sum = days * carPrice;
 		return sum;
 	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+	
+	
 
 }

@@ -1,15 +1,15 @@
 package events;
 
-import java.time.LocalTime;
+
 import java.util.Date;
 
 import entities.Car;
-import entities.Customer;
+
 import entities.Office;
 
 public class Reservation {
 
-	private Office office;
+
 	private String creditCardNumber;
 	private Car car;
 	private Date rentalDate;
@@ -22,10 +22,10 @@ public class Reservation {
 
 	}
 
-	public Reservation(Office office, String creditCardNumber, Car car, Date rentalDate, Date returnDate,
+	public Reservation(String creditCardNumber, Car car, Date rentalDate, Date returnDate,
 			int numberOfDays, int sum, boolean payment) {
 
-		this.office = office;
+	
 		this.creditCardNumber = creditCardNumber;
 		this.car = car;
 		this.rentalDate = rentalDate;
@@ -33,20 +33,6 @@ public class Reservation {
 		this.numberOfDays = numberOfDays;
 		this.sum = sum;
 		this.payment = payment;
-	}
-
-	/**
-	 * @return the office
-	 */
-	public Office getOffice() {
-		return office;
-	}
-
-	/**
-	 * @param office the office to set
-	 */
-	public void setOffice(Office office) {
-		this.office = office;
 	}
 
 	/**

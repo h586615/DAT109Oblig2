@@ -20,13 +20,15 @@ public class Meny
 
 			switch (choice)
 			{
-			case 1: ui.searchForAvailableCars();
+			case 1: ui.searchAndMakeReservation();
 					break;
 
-			case 2: ui.searchForReservations();
+			case 2: ui.searchForReservation();
 					break;
+					
+			case 3: ui.returnCar();
 
-			case 3: ui.exit();
+			case 4: ui.exit();
 					break;
 
 			default:

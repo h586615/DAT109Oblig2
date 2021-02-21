@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import entities.Address;
 import entities.Car;
+import entities.Company;
 import entities.Customer;
 import entities.Office;
 import events.Reservation;
@@ -16,6 +17,8 @@ import events.Reservation;
 public class Tekstgrensesnitt
 {
 	Car car;
+	Customer customer;
+	Company company;
 	Office office;
 	Scanner sc;
 	
@@ -31,8 +34,9 @@ public class Tekstgrensesnitt
 
 		System.out.println("Welcome to Abu Tallah's Rental Company");
 		System.out.println("1: Search for available cars");
-		System.out.println("2: Search for reservations.");
-		System.out.println("3: Exit the program.");
+		System.out.println("2: Search for reservation");
+		System.out.println("3: Return car");
+		System.out.println("4: Exit the program.");
 
 		String input = sc.next();
 
@@ -51,37 +55,38 @@ public class Tekstgrensesnitt
 	/**
 	 * the customer type in which city, rental/return date and is given a list of all the available cars
 	 */
-	public void searchForAvailableCars() {
+	public void searchAndMakeReservation() {
 		
-		Date rentalDate = null;
-		Date returnDate = null;
 		Car rentalCar = null;
+		Reservation reservation = null;
 		
 		System.out.println("Please enter the city you want to rent from '1: Longyearbyen' or '2: Oslo'.");
 		int city = Integer.parseInt(sc.next());
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm");
-		
-		System.out.println("Please enter rental date and time, dd-M-yyyy hh:mm");
-		String rentald = sc.next();
-		
-		try {
-			rentalDate = sdf.parse(rentald);
-
-		} catch (ParseException e) {
-	
-			e.printStackTrace();
-		}
-		
-		System.out.println("Plase enter return date and time, dd-M-yyyy hh:mm");
-		String returnd = sc.next();
-		try {
-			returnDate = sdf.parse(returnd);
-		} catch (ParseException e) {
-			
-			e.printStackTrace();
-		}
-		
+		System.out.println("Please enter rental year");
+        String year = sc.next();
+        
+        System.out.println("Please enter rental month");
+        String month = sc.next();
+        
+        System.out.println("Please enter rental day number");
+        String day = sc.next();
+        
+        Date rentalDate = new Date(year, month, day, 07, 00);
+        
+        System.out.println("Please enter return year");
+        String returnYear = sc.next();
+        
+        System.out.println("Please enter return month");
+        String returnMonth = sc.next();
+        
+        System.out.println("Please enter return day number");
+        String returnDay = sc.next();
+        
+        Date returnDate = new Date(returnYear, returnMonth, returnDay, 22, 00);
+        
+        int numberOfDays = 0; //need to find number of days 
+        
 		List<Car> cars = office.cityCars(city);
 		
 		int numberOfCars = printAvailableCars(car.ledigeBiler(cars, rentalDate, returnDate));
@@ -89,12 +94,13 @@ public class Tekstgrensesnitt
 		
 		rentalCar = pickCar(numberOfCars, cars);
 		
-		Customer customer = registerCustomer();
+		Customer newCustomer = registerCustomer();
 		
+		reservation = makeReservation(rentalCar,rentalDate, returnDate, numberOfDays);
 		
+		updateReservationToCostumer(newCustomer, reservation);
 		
 	}
-
 	
 	/**
 	 * 
@@ -111,8 +117,7 @@ public class Tekstgrensesnitt
 		int choice = Integer.parseInt(sc.next());
 		
 		if(choice == 0) {
-			System.out.println("Goodbye!");
-			System.exit(0);
+			exit();
 		} 
 		if(choice >= 1 && choice <= number) {
 			car = cars.get(choice-1);
@@ -122,9 +127,47 @@ public class Tekstgrensesnitt
 		
 	}
 	
-	public Reservation makeReservation() {
+	/**
+	 * when customer makes a reservation, the reservation object in costumer gets updated 
+	 * add the customer to the costumer list in Company
+	 * @param customer to be updated
+	 * @param reservation to be added
+	 */
+	public void updateReservationToCostumer(Customer customer, Reservation reservation) {
 		
+		Customer updatedCustomer = customer;
 		
+		updatedCustomer.setReservation(reservation);
+		
+		company.addCustomer(updatedCustomer);
+	}
+	
+	/**
+	 * ask customer to type in credit card number, and if the customer wants to pay the given 'sum'
+	 * @return the reservation that was made 
+	 */
+	public Reservation makeReservation(Car car, Date rentalDate, Date returnDate, int numberOfDays) {
+		
+		Reservation reservation = null; 
+		
+		System.out.println("To make a reservation type in your credit card number");
+		
+		String creditcardNumber = sc.next();
+		
+		int price = customer.price(numberOfDays, car.getPrice());
+		
+		System.out.println("Your sum is: " + price + "\n" + "Type '1' to confirm payment, type '0' to exit");
+		int number = Integer.parseInt(sc.next());
+		
+		if(number == 0) {
+			exit();
+		}
+		if(number == 1) {
+			System.out.println("Your payment was successful");
+			reservation = customer.makeReservation(creditcardNumber, car, rentalDate, returnDate, numberOfDays, price);
+		}
+		
+		return reservation;
 	}
 	
 	/**
@@ -172,28 +215,22 @@ public class Tekstgrensesnitt
 		}
 		return false;
 	}
-
-	public void searchForReservations() {
+	
+	public void returnCar() {
 		
-		System.out.println("Please enter the surname to find the reservation");
-		String surname = sc.next();
-		System.out.println("Please enter the producer of the film you want to add.");
-		String producer = sc.next();
-		int year;
-		while (true)
-		{
-			System.out.println("Please enter the year the movie was released.");
-
-			String input = sc.next();
-			try
-			{
-				year = Integer.parseInt(input);
-				break;
-			} catch (NumberFormatException e)
-			{
-				continue;
-			}
-		}
+		
+		
+	}
+	
+	/**
+	 * print out reservation 
+	 */
+	public void searchForReservation() {
+		
+		System.out.println("Please enter your credit card number");
+		String creditCardNumber = sc.next();
+		
+		company.findReservation(creditCardNumber);
 		
 	}
 
@@ -201,7 +238,7 @@ public class Tekstgrensesnitt
 		int i = 0;
 		for(Car c : cars) {
 			i++;
-			System.out.println(i + c.toString());
+			System.out.println(i + " " + c.toString());
 		}
 		
 		return i;
