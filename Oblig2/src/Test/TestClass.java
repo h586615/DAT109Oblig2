@@ -25,11 +25,15 @@ class TestClass {
 	void priceTest() {
 		
 		
-		
 	}
 	
 	@Test
 	void pickCarTest() {
+		
+	}
+	
+	@Test
+	void searchForReservation() {
 		
 	}
 

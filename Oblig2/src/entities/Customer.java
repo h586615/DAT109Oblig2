@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.Date;
-import java.util.List;
 
 import events.Reservation;
 
@@ -12,7 +11,6 @@ public class Customer {
 	private Address address;
 	private int phoneNumber;
 	private Reservation reservation;
-	
 
 	public Customer(String surname, String lastname, Address address, int phone, Reservation reservation) {
 		this.surname = surname;
@@ -22,13 +20,8 @@ public class Customer {
 		this.reservation = reservation;
 	}
 
-	@Override
-	public String toString() {
-		return "[" + surname + ", " + lastname + ", address=" + address + ", phone=" + phoneNumber + "]";
-	}
-
 	/**
-	 * customer make reservation
+	 * customer makes a reservation
 	 * 
 	 * @return the reservation
 	 */
@@ -37,23 +30,11 @@ public class Customer {
 
 		boolean payment = true;
 
-		Reservation newReservation = new Reservation(creditCard, car, rentalDate, returnDate, numberOfDays,
-				sum, payment);
+		Reservation newReservation = new Reservation(creditCard, car, rentalDate, returnDate, numberOfDays, sum,
+				payment);
 
 		return newReservation;
 
-	}
-
-	/**
-	 * calculate the price to rent a car
-	 * 
-	 * @param days,    number of rental days
-	 * @param carPrice
-	 * @return sum
-	 */
-	public int price(int days, int carPrice) {
-		int sum = days * carPrice;
-		return sum;
 	}
 
 	public String getLastname() {
@@ -95,7 +76,10 @@ public class Customer {
 	public void setReservation(Reservation reservation) {
 		this.reservation = reservation;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "[" + surname + ", " + lastname + ", address=" + address + ", phone=" + phoneNumber + "]";
+	}
 
 }

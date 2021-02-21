@@ -1,6 +1,5 @@
 package events;
 
-
 import java.util.Date;
 
 import entities.Car;
@@ -8,7 +7,6 @@ import entities.Car;
 import entities.Office;
 
 public class Reservation {
-
 
 	private String creditCardNumber;
 	private Car car;
@@ -22,10 +20,9 @@ public class Reservation {
 
 	}
 
-	public Reservation(String creditCardNumber, Car car, Date rentalDate, Date returnDate,
-			int numberOfDays, int sum, boolean payment) {
+	public Reservation(String creditCardNumber, Car car, Date rentalDate, Date returnDate, int numberOfDays, int sum,
+			boolean payment) {
 
-	
 		this.creditCardNumber = creditCardNumber;
 		this.car = car;
 		this.rentalDate = rentalDate;
@@ -103,6 +100,29 @@ public class Reservation {
 	 */
 	public void setNumberOfDays(int numberOfDays) {
 		this.numberOfDays = numberOfDays;
+	}
+
+	public int getSum() {
+		return sum;
+	}
+
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+
+	public boolean isPayment() {
+		return payment;
+	}
+
+	public void setPayment(boolean payment) {
+		this.payment = payment;
+	}
+
+	@Override
+	public String toString() {
+		return "Reservation [creditCardNumber=" + creditCardNumber + ", car=" + car + ", rentalDate=" + rentalDate
+				+ ", returnDate=" + returnDate + ", numberOfDays=" + numberOfDays + ", sum=" + sum + ", payment="
+				+ payment + "]";
 	}
 
 }

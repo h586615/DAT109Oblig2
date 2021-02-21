@@ -1,6 +1,5 @@
 package entities;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +28,71 @@ public class Car {
 		this.km = km;
 		this.price = price;
 		reservations = new ArrayList<>();
+	}
+
+	public void addReservation(Reservation reservation) {
+		reservations.add(reservation);
+	}
+
+	public void deleteReservation(Reservation reservation) {
+		if (reservations.contains(reservation)) {
+			reservations.remove(reservation);
+		}
+	}
+
+	public List<Car> ledigeBiler(List<Car> biler, Date nyFraDato, Date nyTilDato) {
+
+		List<Car> ledigeBiler = new ArrayList<>();
+
+		for (int i = 0; i < biler.size(); i++) { // start outer for loop
+
+			boolean erLedig = true;
+			
+			List<Reservation> reservasjoner = biler.get(i).getReservations();
+
+			for (int j = 0; j < reservasjoner.size(); j++) { // start inner for loop
+				Reservation reservasjon = reservasjoner.get(j);
+
+				if ((reservasjon.getReturnDate().after(nyFraDato)) && (reservasjon.getReturnDate().before(nyTilDato))) {// if
+																														// statement
+																														// 1:
+																														// sjekke
+																														// om
+																														// reservasjonens
+																														// returnDate
+																														// er
+																														// mellom
+																														// nyFraDato
+																														// og
+																														// ny
+																														// TilDato
+					erLedig = false;
+				}
+
+				else if ((reservasjon.getRentalDate().after(nyFraDato))
+						&& (reservasjon.getRentalDate().before(nyTilDato))) {// if statement 2: sjekke om reservasjonens
+																				// rentalDate er mellom nyFraDato og ny
+																				// Tildato
+					erLedig = false;
+				}
+
+				else if (((nyFraDato.after(reservasjon.getRentalDate())
+						&& nyFraDato.before(reservasjon.getReturnDate()))
+						&& (nyTilDato.after(reservasjon.getRentalDate())
+								&& nyTilDato.before(reservasjon.getReturnDate())))) {// if statement 3: sjekke om
+																						// nyFraDato og nyTilDato begge
+																						// er mellom rentalDate og
+																						// returnDate
+					erLedig = false;
+				}
+			} // end inner for loop
+
+			if (erLedig) { // start if statement 2
+				ledigeBiler.add(biler.get(i));
+			} // end if statement 2
+		} // end outer for loop
+		
+		return ledigeBiler;
 	}
 
 	/**
@@ -143,68 +207,10 @@ public class Car {
 		this.reservations = reservations;
 	}
 
-	public void addReservation(Reservation reservation) {
-		reservations.add(reservation);
-	}
-
-	public void deleteReservation(Reservation reservation) {
-		if (reservations.contains(reservation)) {
-			reservations.remove(reservation);
-		}
-	}
-
-	public List<Car> ledigeBiler(List<Car> biler, Date nyFraDato, Date nyTilDato) {
-
-		List<Car> ledigeBiler = new ArrayList<>();
-
-		for (int i = 0; i < biler.size(); i++) { // start outer for loop
-
-			boolean erLedig = true;
-			List<Reservation> reservasjoner = biler.get(i).getReservations();
-
-			for (int j = 0; j < reservasjoner.size(); j++) { // start inner for loop
-				Reservation reservasjon = reservasjoner.get(j);
-
-				if ((reservasjon.getReturnDate().after(nyFraDato)) && (reservasjon.getReturnDate().before(nyTilDato))) {// if
-																														// statement
-																														// 1:
-																														// sjekke
-																														// om
-																														// reservasjonens
-																														// returnDate
-																														// er
-																														// mellom
-																														// nyFraDato
-																														// og
-																														// ny
-																														// TilDato
-					erLedig = false;
-				}
-
-				else if ((reservasjon.getRentalDate().after(nyFraDato))
-						&& (reservasjon.getRentalDate().before(nyTilDato))) {// if statement 2: sjekke om reservasjonens
-																				// rentalDate er mellom nyFraDato og ny
-																				// Tildato
-					erLedig = false;
-				}
-
-				else if (((nyFraDato.after(reservasjon.getRentalDate())
-						&& nyFraDato.before(reservasjon.getReturnDate()))
-						&& (nyTilDato.after(reservasjon.getRentalDate())
-								&& nyTilDato.before(reservasjon.getReturnDate())))) {// if statement 3: sjekke om
-																						// nyFraDato og nyTilDato begge
-																						// er mellom rentalDate og
-																						// returnDate
-					erLedig = false;
-				}
-			} // end inner for loop
-
-			if (erLedig) { // start if statement 2
-				ledigeBiler.add(biler.get(i));
-			} // end if statement 2
-		} // end outer for loop
-
-		return ledigeBiler;
+	@Override
+	public String toString() {
+		return "Car [registrationNumber=" + registrationNumber + ", brand=" + brand + ", model=" + model + ", color="
+				+ color + ", chassis=" + chassis + ", km=" + km + ", price=" + price + "]";
 	}
 
 }

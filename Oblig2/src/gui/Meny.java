@@ -1,37 +1,37 @@
 package gui;
 
-import java.util.Scanner;
 
-public class Meny
-{
+
+public class Meny {
 	private Tekstgrensesnitt ui;
 
-	
-	public Meny()
-	{
+
+
+	public Meny() {
+		
 		ui = new Tekstgrensesnitt();
 	}
-	
-	public void start()
-	{
-		while (true)
-		{
+
+	public void start() {
+		while (true) {
 			int choice = ui.showMainMenu();
 
-			switch (choice)
-			{
-			case 1: ui.searchAndMakeReservation();
-					break;
+			switch (choice) {
+			case 1:
+				ui.searchAndMakeReservation();
+				break;
 
-			case 2: ui.searchForReservation();
-					break;
+			case 2:
+				ui.searchAndReturnCar();
+				break;
 
-			case 3: ui.exit();
-					break;
+			case 3:
+				ui.exit();
+				break;
 
 			default:
-					System.out.println("Error: The input is not a valid choice");
-					break;
+				System.out.println("Error: The input is not a valid choice");
+				break;
 			}
 		}
 	}

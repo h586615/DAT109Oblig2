@@ -4,55 +4,120 @@ import java.util.ArrayList;
 import java.util.List;
 
 import events.Reservation;
-import main.Temporary;
+import main.CarFactory;
 
 public class Company {
 
 	private String name;
 	private int telephoneNumber;
-	private String addresse;
+	private CarFactory factory;
 
-	private List<Office> allOffices;
-	private Temporary temp;
-	private List<Car> allCars;
+	private List<Office> allOffices = new ArrayList<>();
+	private List<Car> allCars = new ArrayList<>();
 	private List<Customer> customers;
 
-	public Company(String name, int telephoneNumber, String addresse) {
+	public Company(String name, int telephoneNumber) {
+
 		this.name = name;
 		this.telephoneNumber = telephoneNumber;
-		this.addresse = addresse;
-		allOffices = new ArrayList<>();
+
+		factory = new CarFactory();
+		factory.setup();
+
+		allOffices = factory.getOffices();
+		allCars = factory.getAllCars();
 		customers = new ArrayList<>();
 	}
 
-	public void allOffices() {
-		allOffices = temp.getAllOffices();
-		for (int i = 0; i < allOffices.size(); i++) {
-			System.out.println(allOffices.get(i));
-		}
-	}
-	public List<Car> getAllCars() {
-		return allCars;	
-	}
-	public void addToAllCars(Car car){
+	public void addToAllCars(Car car) {
 		allCars.add(car);
 	}
-	
+
 	public void addCustomer(Customer customer) {
 		customers.add(customer);
 	}
-	
-	public void findReservation(String creditCardNumber) {
+
+	public Reservation findReservation(String creditCardNumber) {
 		
-		for(Customer c : customers) {
-			if(c.getReservation().getCreditCardNumber().equals(creditCardNumber)) {
+		Reservation reservation = null;
+
+		for (Customer c : customers) {
+			if (c.getReservation().getCreditCardNumber().equals(creditCardNumber)) {
+				reservation = c.getReservation();
 				System.out.println(c.getReservation());
 			}
-		}	
+		}
+		return reservation;
 	}
 
-//	public void checkAvailable(Address rentalPlace, Date rentalDate, Date returnDate) {
-//
-//	}
+	public List<Car> cityCars(int a) {
+
+		List<Car> cityCars = new ArrayList<>();
+
+		if (a == 1) {
+
+			cityCars = allOffices.get(0).getCars();
+		}
+
+		else {
+			cityCars = allOffices.get(1).getCars();
+
+		}
+		return cityCars;
+
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getTelephoneNumber() {
+		return telephoneNumber;
+	}
+
+	public void setTelephoneNumber(int telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
+	}
+
+	public List<Car> getOsloCars() {
+		List<Car> osloCars = new ArrayList<>();
+		osloCars = factory.getOsloCars();
+		return osloCars;
+	}
+
+	public List<Car> getLongyearsCars() {
+		List<Car> longyearsCars = new ArrayList<>();
+		longyearsCars = factory.getLongyearCars();
+		return longyearsCars;
+	}
+
+	public List<Office> getAllOffices() {
+		return allOffices;
+	}
+
+	public void setAllOffices(List<Office> allOffices) {
+		this.allOffices = allOffices;
+	}
+
+	public List<Car> getAllCars() {
+		allCars = factory.getAllCars();
+		return allCars;
+	}
+
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+
+	public void setAllCars(List<Car> allCars) {
+		this.allCars = allCars;
+	}
 
 }
