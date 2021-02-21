@@ -96,6 +96,11 @@ public class Car {
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
+	@Override
+	public String toString() {
+		return "[" + registrationNumber + ", " + brand + ", " + model + ", " + color + ", "
+				+ chassis +  ", " + km +"]";
+	}
 
 	public List<Car> ledigeBiler(List<Car> biler, Date nyFraDato, Date nyTilDato) {
 	    
