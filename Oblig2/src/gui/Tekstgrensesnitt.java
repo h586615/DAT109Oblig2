@@ -183,8 +183,8 @@ public class Tekstgrensesnitt {
 	public Customer registerCustomer() {
 
 		System.out.println("To confirm the reservation you need to sign up as a customer");
-		System.out.println("Please enter your surname");
-		String surname = sc.next();
+		System.out.println("Please enter your firstname");
+		String firstname = sc.next();
 		System.out.println("Please enter your lastname");
 		String lastname = sc.next();
 		System.out.println("Please enter your address");
@@ -204,7 +204,7 @@ public class Tekstgrensesnitt {
 
 		int phoneNumber = Integer.parseInt(phone);
 
-		Customer customer = company.addCustomer(surname, lastname, address, zipCode, area, phoneNumber);
+		Customer customer = company.addCustomer(firstname, lastname, address, zipCode, area, phoneNumber);
 
 		return customer;
 	}
