@@ -134,7 +134,7 @@ public class Tekstgrensesnitt
 	 * @param customer to be updated
 	 * @param reservation to be added
 	 */
-	public void updateReservationToCustomer(Customer customer, Reservation reservation) {
+	public void addReservationToCustomer(Customer customer, Reservation reservation) {
 		
 		Customer updatedCustomer = customer;
 		
