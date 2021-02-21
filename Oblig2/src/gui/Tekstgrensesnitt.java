@@ -60,9 +60,9 @@ public class Tekstgrensesnitt
 		System.out.println("Please enter the city you want to rent from '1: Pyongyang' or '2: Mogadishu'.");
 		int city = Integer.parseInt(sc.next());
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm");
 		
-		System.out.println("Please enter rental date and time, dd-M-yyyy hh:mm:ss");
+		System.out.println("Please enter rental date and time, dd-M-yyyy hh:mm");
 		String rentald = sc.next();
 		
 		try {
@@ -73,7 +73,7 @@ public class Tekstgrensesnitt
 			e.printStackTrace();
 		}
 		
-		System.out.println("Plase enter return date and time, dd-M-yyyy hh:mm:ss");
+		System.out.println("Plase enter return date and time, dd-M-yyyy hh:mm");
 		String returnd = sc.next();
 		try {
 			returnDate = sdf.parse(returnd);

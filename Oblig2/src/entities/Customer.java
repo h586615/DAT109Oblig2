@@ -11,7 +11,8 @@ public class Customer {
 	private String surname;
 	private Address address;
 	private int telephoneNumber;
-	public Reservation reservation;
+	private Reservation reservation;
+	
 
 	public Customer(String surname, String lastname, Address address, int phone, Reservation reservation) {
 		this.surname = surname;
@@ -21,7 +22,21 @@ public class Customer {
 		this.reservation = reservation;
 	}
 
-	public void pay() {
-
+	public Reservation makeReservation(Office office, String creditCard, Car car, Date rentalDate, Date timeRental, 
+			Date returnDate, Date timeReturn, int numberOfDays) {
+		
+		int carPrice = car.getPrice();
+		int paymentSum = price(numberOfDays, carPrice);
+		boolean payment = true;
+		
+		Reservation newReservation = new Reservation(office, creditCard, car, rentalDate, timeRental, 
+				returnDate, timeReturn, numberOfDays, paymentSum, payment);
+		
 	}
+	
+	public int price(int days, int carPrice) {
+		int sum = days * carPrice; 
+		return sum;
+	}
+	
 }
