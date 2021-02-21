@@ -14,12 +14,15 @@ public class Company {
 
 	private List<Office> allOffices;
 	private Temporary temp;
-	private List<Car> cars;
+	//private List<Car> cars;
+	private List<Customer> customers;
 
 	public Company(String name, int telephoneNumber, String addresse) {
 		this.name = name;
 		this.telephoneNumber = telephoneNumber;
 		this.addresse = addresse;
+		allOffices = new ArrayList<>();
+		customers = new ArrayList<>();
 	}
 
 	public void allOffices() {
@@ -27,6 +30,10 @@ public class Company {
 		for (int i = 0; i < allOffices.size(); i++) {
 			System.out.println(allOffices.get(i));
 		}
+	}
+	
+	public void addCustomer(Customer customer) {
+		customers.add(customer);
 	}
 
 

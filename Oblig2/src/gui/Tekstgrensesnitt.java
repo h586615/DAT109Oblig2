@@ -6,8 +6,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import entities.Address;
 import entities.Car;
+import entities.Customer;
 import entities.Office;
+import events.Reservation;
 
 
 public class Tekstgrensesnitt
@@ -45,10 +48,14 @@ public class Tekstgrensesnitt
 		}
 	}
 	
+	/**
+	 * the customer type in which city, rental/return date and is given a list of all the available cars
+	 */
 	public void searchForAvailableCars() {
 		
 		Date rentalDate = null;
 		Date returnDate = null;
+		Car rentalCar = null;
 		
 		System.out.println("Please enter the city you want to rent from '1: Pyongyang' or '2: Mogadishu'.");
 		int city = Integer.parseInt(sc.next());
@@ -75,10 +82,94 @@ public class Tekstgrensesnitt
 			e.printStackTrace();
 		}
 		
-		printAvailableCars(car.ledigeBiler(office.cityCars(city), rentalDate, returnDate));
+		List<Car> cars = office.cityCars(city);
 		
-	   
+		int numberOfCars = printAvailableCars(car.ledigeBiler(cars, rentalDate, returnDate));
 	  
+		
+		rentalCar = pickCar(numberOfCars, cars);
+		
+		Customer customer = registerCustomer();
+		
+		
+		
+	}
+
+	
+	/**
+	 * 
+	 * @param number of available cars
+	 * @param cars, list of cars
+	 * @return the chosen car
+	 */
+	public Car pickCar(int number, List<Car> cars) {
+	
+		Car car = null;
+		
+		System.out.println("Chose the car you want to rent, type '0' to exit the service");
+		
+		int choice = Integer.parseInt(sc.next());
+		
+		if(choice == 0) {
+			System.out.println("Goodbye!");
+			System.exit(0);
+		} 
+		if(choice >= 1 && choice <= number) {
+			car = cars.get(choice-1);
+		}
+		
+		return car;
+		
+	}
+	
+	public Reservation makeReservation() {
+		
+	}
+	
+	/**
+	 * register a customer with help from Scanner 
+	 * @return the Customer 
+	 */
+	public Customer registerCustomer() {
+		
+		System.out.println("To confirm the reservation you need to sign up as a customer");
+		System.out.println("Please enter your surname");
+		String surname = sc.next(); 
+		System.out.println("Please enter your lastname");
+		String lastname = sc.next(); 
+		System.out.println("Please enter your address");
+		String address = sc.next();
+		System.out.println("Please enter your zip code");
+		int zipCode = Integer.parseInt(sc.next());
+		System.out.println("Please enter your area");
+		String area = sc.next();
+		
+		System.out.println("Please enter your phone number");
+		String phone = sc.next();
+		
+		while(!checkPhone(phone)) {
+			System.out.println("Phone number can only contain digits, please enter again");
+			phone = sc.next();
+		}
+		
+		int phoneNumber = Integer.parseInt(phone);
+		
+		Customer customer = new Customer(surname, lastname, new Address(address, zipCode, area), phoneNumber, new Reservation());
+		
+		return customer;
+	}
+	
+	
+	/**
+	 * check if a phone number only contains digits
+	 * @param phone number
+	 * @return true or false 
+	 */
+	public boolean checkPhone(String phone) {
+		if(phone.matches("[0-9]+") && phone.length() == 7) {
+			return true;
+		}
+		return false;
 	}
 
 	public void searchForReservations() {
@@ -105,10 +196,14 @@ public class Tekstgrensesnitt
 		
 	}
 
-	public void printAvailableCars(List<Car> cars){
+	public int printAvailableCars(List<Car> cars){
+		int i = 0;
 		for(Car c : cars) {
-			System.out.println(c.toString());
+			i++;
+			System.out.println(i + c.toString());
 		}
+		
+		return i;
 	}
 
 	public void exit()

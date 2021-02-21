@@ -1,7 +1,5 @@
 package entities;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +17,10 @@ public class Office {
 		this.officeNumber = officeNumber;
 		this.address = address;
 		this.telephoneNumber = telephoneNumber;
+		cars = new ArrayList<>();
 	}
 
 	public List<Car> cityCars(int a) {
-		cars = new ArrayList<>();
 		if (a == 1) {
 			cars = temp.longyearCars();
 

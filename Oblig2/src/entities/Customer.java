@@ -9,15 +9,16 @@ public class Customer {
 
 	private String lastname;
 	private String surname;
-	private String address;
+	private Address address;
 	private int telephoneNumber;
 	public Reservation reservation;
 
-	public Customer(String lastname, String surname, String address, int phone) {
+	public Customer(String surname, String lastname, Address address, int phone, Reservation reservation) {
 		this.surname = surname;
 		this.lastname = lastname;
 		this.address = address;
 		this.telephoneNumber = phone;
+		this.reservation = reservation;
 	}
 
 	public void pay() {

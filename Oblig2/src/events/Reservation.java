@@ -17,6 +17,9 @@ public class Reservation {
 	private Date returnDate;
 	private int numberOfDays;
 
+	public Reservation() {
+		
+	}
 	public Reservation(Office office, String creditCardNumber, Car car, Date rentalDate, Date timeAtRental,
 			Date returnDate, int numberOfDays) {
 
