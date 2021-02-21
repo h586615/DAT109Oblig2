@@ -38,6 +38,8 @@ public class Temporary {
 
 		longyearCars.add(c1);
 		longyearCars.add(c2);
+		addToAllCars(c1);
+		addToAllCars(c2);
 		
 		
 //		mogCars.add(c3);
@@ -61,6 +63,8 @@ public class Temporary {
 		
 		osloCars.add(c3);
 		osloCars.add(c4);
+		addToAllCars(c3);
+		addToAllCars(c4);
 
 		return osloCars;
 
