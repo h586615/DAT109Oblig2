@@ -97,7 +97,7 @@ public class Tekstgrensesnitt
 		
 		Customer newCustomer = registerCustomer();
 		
-		reservation = makeReservation(rentalCar,rentalDate, returnDate, numberOfDays);
+		reservation = completeReservation(rentalCar,rentalDate, returnDate, numberOfDays);
 		
 		updateReservationToCustomer(newCustomer, reservation);
 		
@@ -150,7 +150,7 @@ public class Tekstgrensesnitt
 	 * makes a reservation, and add reservation to the Car
 	 * @return the reservation that was made 
 	 */
-	public Reservation makeReservation(Car car, Date rentalDate, Date returnDate, int numberOfDays) {
+	public Reservation completeReservation(Car car, Date rentalDate, Date returnDate, int numberOfDays) {
 		
 		Reservation reservation = null; 
 		
