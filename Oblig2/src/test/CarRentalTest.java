@@ -72,7 +72,7 @@ class CarRentalTest {
 	@Test
 	void availableCarsTest() {
 
-		List<Car> carList1 = Car.ledigeBiler(cars, new Date(2021, 2, 1, 07, 00), new Date(2021, 2, 7, 22, 00));
+		List<Car> carList1 = Car.availableCars(cars, new Date(2021, 2, 1, 07, 00), new Date(2021, 2, 7, 22, 00));
 
 		assertEquals(car1, carList1.get(0));
 

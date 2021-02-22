@@ -63,7 +63,7 @@ public class Tekstgrensesnitt {
 
 		List<Car> cars = company.cityCars(city);
 
-		List<Car> availableCars = Car.ledigeBiler(cars, rentalDate, returnDate);
+		List<Car> availableCars = Car.availableCars(cars, rentalDate, returnDate);
 
 		int numberOfCars = printAvailableCars(availableCars, numberOfDays);
 

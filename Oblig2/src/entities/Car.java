@@ -40,7 +40,7 @@ public class Car {
 		}
 	}
 
-	public static List<Car> ledigeBiler(List<Car> biler, Date nyFraDato, Date nyTilDato) {
+	public static List<Car> availableCars(List<Car> biler, Date nyFraDato, Date nyTilDato) {
 	     
 	    List<Car> ledigeBiler =  new ArrayList<>();
 	    

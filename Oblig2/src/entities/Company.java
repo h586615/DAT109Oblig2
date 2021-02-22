@@ -64,7 +64,7 @@ public class Company {
 	public void returnCar(Customer customer) {
 		for(Customer c : customers) {
 			if(c.equals(customer)) {
-				c.setReservation(null);
+				customers.remove(c);
 				System.out.println("The rental car was successfully delivered");
 			}
 		}
