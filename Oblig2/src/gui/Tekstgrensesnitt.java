@@ -172,7 +172,7 @@ public class Tekstgrensesnitt {
 			exit();
 		}
 		if (number == 1) {
-			System.out.println("Your payment was successful");
+			System.out.println("Your order was successful");
 			reservation = customer.makeReservation(creditcardNumber, customer, car, rentalDate, returnDate,
 					numberOfDays, price);
 

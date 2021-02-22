@@ -66,6 +66,7 @@ public class Company {
 			if(c.equals(customer)) {
 				customers.remove(c);
 				System.out.println("The rental car was successfully delivered");
+				break;
 			}
 		}
 	}
