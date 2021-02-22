@@ -29,16 +29,29 @@ public class Car {
 		this.price = price;
 		reservations = new ArrayList<>();
 	}
-
+/**
+ * Adds the reservation to the list of reservations for the given car.
+ * @param reservation
+ */
 	public void addReservation(Reservation reservation) {
 		reservations.add(reservation);
 	}
-
+/**
+ * Used when the given reservation is finished, used to remove a reservation from the cars list of reservations.
+ * @param reservation
+ */
 	public void deleteReservation(Reservation reservation) {
 		if (reservations.contains(reservation)) {
 			reservations.remove(reservation);
 		}
 	}
+	/**
+	 * Used to find available cars in the city of choice and based on the customers criterias
+	 * @param biler
+	 * @param nyFraDato
+	 * @param nyTilDato
+	 * @return
+	 */
 
 	public static List<Car> availableCars(List<Car> biler, Date nyFraDato, Date nyTilDato) {
 	     
