@@ -62,15 +62,15 @@ public class Tekstgrensesnitt {
 		int numberOfDays = calculateDays(returnDate, rentalDate);
 
 		List<Car> cars = company.cityCars(city);
-		
+
 		List<Car> availableCars = Car.ledigeBiler(cars, rentalDate, returnDate);
 
-		int numberOfCars = printAvailableCars(availableCars);
+		int numberOfCars = printAvailableCars(availableCars, numberOfDays);
 
 		System.out.println("Chose the car you want to rent, type '0' to exit the service");
 
 		int choice = Integer.parseInt(sc.next());
-		
+
 		rentalCar = pickCar(choice, numberOfCars, availableCars);
 
 		Customer newCustomer = registerCustomer();
@@ -80,30 +80,35 @@ public class Tekstgrensesnitt {
 		addReservationToCustomer(newCustomer, reservation);
 
 	}
-	
+
+	/**
+	 * the user enter credit card number and we find the reservation. The user user
+	 * is giving a choice to return the car or exit
+	 */
 	public void searchAndReturnCar() {
-		
+
 		System.out.println("Please enter your credit card number");
 		String creditCardNumber = sc.next();
-		
+
 		Reservation reservation = searchForReservation(creditCardNumber);
-		
-		if(reservation == null) {
+
+		if (reservation == null) {
 			System.out.println("The reservation does not exist");
 		} else {
-			
+
 			System.out.println("If you want to return the rental car, type '1' and '0' for exit");
 			int choice = Integer.parseInt(sc.next());
-			
-			if(choice == 1) {
+
+			if (choice == 1) {
 				returnCar(reservation);
-				
+
 			} else {
 				exit();
 			}
 		}
 
 	}
+
 	/**
 	 * 
 	 * @param number of available cars
@@ -149,7 +154,8 @@ public class Tekstgrensesnitt {
 	 * 
 	 * @return the reservation that was made
 	 */
-	public Reservation completeReservation(Customer customer, Car car, Date rentalDate, Date returnDate, int numberOfDays) {
+	public Reservation completeReservation(Customer customer, Car car, Date rentalDate, Date returnDate,
+			int numberOfDays) {
 
 		Reservation reservation = null;
 
@@ -167,7 +173,8 @@ public class Tekstgrensesnitt {
 		}
 		if (number == 1) {
 			System.out.println("Your payment was successful");
-			reservation = customer.makeReservation(creditcardNumber, customer, car, rentalDate, returnDate, numberOfDays, price);
+			reservation = customer.makeReservation(creditcardNumber, customer, car, rentalDate, returnDate,
+					numberOfDays, price);
 
 			car.addReservation(reservation);
 		}
@@ -222,67 +229,83 @@ public class Tekstgrensesnitt {
 		return false;
 	}
 
+	/**
+	 * with the help of the reservation we can find the car. After calculating for
+	 * any fees, we set the kmstand, delete reservation from the reservation list
+	 * (in car) and remove the reservation from the customer object
+	 * 
+	 * @param reservation
+	 */
 	public void returnCar(Reservation reservation) {
 
 		boolean yes = true;
-		
+
 		Car car = reservation.getCar();
-		
+
 		System.out.println("Type in new km stand");
 		int km = Integer.parseInt(sc.next());
 
 		Date newReturnDate = returnDate();
-		
+
 		Date returnDate = reservation.getReturnDate();
-		
+
 		int days = calculateDays(newReturnDate, returnDate);
-		
-		if(days > 0) {
-			
-			int newPrice = price(days, car.getPrice()*2);
+
+		if (days > 0) {
+
+			int newPrice = price(days, car.getPrice() * 2);
 			System.out.println("You went " + days + " over your rental time" + "\n" + "Your fee is on " + newPrice);
-			
-			while(yes) {
+
+			while (yes) {
 				System.out.println("Type '1' to confirm your payment");
 				int number = Integer.parseInt(sc.next());
-				
-				if(number == 1) {
+
+				if (number == 1) {
 					System.out.println("Your payment was successful");
 					yes = false;
 				}
 			}
 		}
-		
+
 		car.setKm(car.getKm() + km);
-		
+
 		car.deleteReservation(reservation);
-		
+
 		company.returnCar(reservation.getCustomer());
-		
+
 	}
 
 	/**
 	 * search after a reservation with the help of credit card number
+	 * 
 	 * @return the reservation
 	 */
 	public Reservation searchForReservation(String creditCardNumber) {
 
 		Reservation reservation = company.findReservation(creditCardNumber);
-		
+
 		return reservation;
 
 	}
 
-	public int printAvailableCars(List<Car> cars) {
+	/**
+	 * prints available cars
+	 * 
+	 * @param list of cars
+	 * @return number of cars in the list
+	 */
+	public int printAvailableCars(List<Car> cars, int numberOfDays) {
 		int i = 0;
 		for (Car c : cars) {
+
+			int price = price(numberOfDays, c.getPrice());
 			i++;
-			System.out.println(i + " " + c.toString());
+			System.out.println(i + " " + c.toString() + " the price for " + numberOfDays + " days: " + price);
 		}
 
 		return i;
 	}
-	
+
 	/**
 	 * calculate the price to rent a car
 	 * 
@@ -294,7 +317,12 @@ public class Tekstgrensesnitt {
 		int sum = days * carPrice;
 		return sum;
 	}
-	
+
+	/**
+	 * with Scanner, user type in rental date
+	 * 
+	 * @return the Date
+	 */
 	public Date rentalDate() {
 
 		System.out.println("Please enter rental year");
@@ -307,12 +335,17 @@ public class Tekstgrensesnitt {
 		int day = Integer.parseInt(sc.next());
 
 		Date rentalDate = new Date(year, month, day, 07, 00);
-		
+
 		return rentalDate;
 	}
-	
+
+	/**
+	 * with Scanner, user type in return date
+	 * 
+	 * @return the Date
+	 */
 	public Date returnDate() {
-		
+
 		System.out.println("Please enter return year");
 		int returnYear = Integer.parseInt(sc.next());
 
@@ -321,21 +354,31 @@ public class Tekstgrensesnitt {
 
 		System.out.println("Please enter return day number");
 		int returnDay = Integer.parseInt(sc.next());
-		
+
 		Date returnDate = new Date(returnYear, returnMonth, returnDay, 22, 00);
-		
+
 		return returnDate;
 
 	}
-	
+
+	/**
+	 * calculate if the customer went over due
+	 * 
+	 * @param returnDate
+	 * @param rentalDate
+	 * @return the number of days
+	 */
 	public int calculateDays(Date returnDate, Date rentalDate) {
-		
+
 		Long daysBetween = (returnDate.getTime() - rentalDate.getTime()) / 86400000; // 86 400 000 milliseconds in a day
 		int numberOfDays = daysBetween.intValue();
-		
+
 		return numberOfDays;
 	}
 
+	/**
+	 * exit the program, the user is giving that choice through out
+	 */
 	public void exit() {
 		System.out.println("Shutting down...");
 		System.exit(0);

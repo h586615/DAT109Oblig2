@@ -50,10 +50,13 @@ public class Company {
 		Reservation reservation = null;
 
 		for (Customer c : customers) {
+			
+			System.out.println(c.toString());
+			
 			if (c.getReservation().getCreditCardNumber().equals(creditCardNumber)) {
 				reservation = c.getReservation();
 				System.out.println(c.getReservation());
-			}
+			} 
 		}
 		return reservation;
 	}
